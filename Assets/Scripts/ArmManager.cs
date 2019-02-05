@@ -55,4 +55,16 @@ public class ArmManager : MonoBehaviour {
             _arm[i].transform.position = _arm[i + 1].GetComponent<Follow>()._joint.transform.position;
         }
     }
+
+    public void RemoveArm(GameObject arm)
+    {
+        _arm.Remove(arm);
+        for (int i = 0; i != _arm.Count; i++)
+        {
+            if (i != 0)
+                _arm[i].GetComponent<Follow>()._toFollow = _arm[i - 1];
+            else
+                _arm[i].GetComponent<Follow>()._toFollow = _following;
+        }
+    }
 }

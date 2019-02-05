@@ -62,4 +62,9 @@ public class Follow : MonoBehaviour {
         vec.y *= n;
         return vec;
     }
+
+    private void OnDestroy()
+    {
+        transform.parent.GetComponent<ArmManager>().RemoveArm(this.gameObject);
+    }
 }
