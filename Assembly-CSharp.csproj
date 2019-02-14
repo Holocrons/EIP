@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BossMovement.cs" />
+    <Compile Include="Assets\MoveBackLegs.cs" />
     <Compile Include="Assets\playerMovement.cs" />
     <Compile Include="Assets\Scripts\ArmManager.cs" />
     <Compile Include="Assets\Scripts\Deletdis.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Assets\Scripts\FollowCursor.cs" />
     <Compile Include="Assets\Scripts\Mouse.cs" />
     <Compile Include="Assets\Scripts\MovePlayer.cs" />
+    <Compile Include="Assets\Shoot.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Rémi/Desktop/EIP/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

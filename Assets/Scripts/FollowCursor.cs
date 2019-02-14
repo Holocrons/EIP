@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class FollowCursor : MonoBehaviour {
 
-    private Vector3 _target;
     public int _mouse;
 
     // Use this for initialization
 	void Start () {
-        _target = transform.position;
+        //_target = transform.position;
     }
 	
 	// Update is called once per frame
@@ -24,6 +23,6 @@ public class FollowCursor : MonoBehaviour {
 
     public void setTarget(Vector3 target)
     {
-        _target = target;
+        //_target = target;
     }
 }

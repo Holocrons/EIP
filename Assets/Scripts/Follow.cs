@@ -12,9 +12,11 @@ public class Follow : MonoBehaviour {
     public GameObject _toFollow;
     private Vector2 target;
     private double angle = 0f;
-    private Vector2 targetPos = new Vector2(0, 0);
     public bool findGround = false;
     public int index = 0;
+    public bool conraint;
+    public int minc;
+    public int maxc;
 
     // Use this for initialization
     void Start () {
@@ -22,7 +24,7 @@ public class Follow : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	public void MyUpdate () {
+	public void MyUpdate (GameObject prevBone) {
        if (_toFollow.tag != "bone" && findGround == true)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f);
@@ -33,17 +35,27 @@ public class Follow : MonoBehaviour {
             Debug.Log(hit.collider.name);
         }
         target = _toFollow.transform.position;
-        FollowTarget();
+        FollowTarget(prevBone);
     }
 
-    void FollowTarget()
+    void FollowTarget(GameObject prevBone)
     {
         Vector3 dir = new Vector3(0,0);
+        double offset = 0;
 
+        //if (prevBone != null)
+          //  offset = prevBone.GetComponent<Follow>().GetAngle();
         dir.x = target.x - _base.transform.position.x;
         dir.y = target.y - _base.transform.position.y;
         angle = Math.Atan2(dir.y, dir.x);
         angle = angle * 180 / 3.14159265;
+        if (conraint == true && (angle < offset + minc || angle > offset + maxc))
+        {
+            if (angle > 90)
+                angle = -180;
+            else
+                angle = 0;
+        }
         angle -= 360;
         transform.eulerAngles = new Vector3(0, 0, (float)angle);
         dir = SetMag(_spr.size.x * transform.localScale.x, dir);
@@ -61,6 +73,11 @@ public class Follow : MonoBehaviour {
         vec.x *= n;
         vec.y *= n;
         return vec;
+    }
+
+    public double GetAngle()
+    {
+        return (angle);
     }
 
     private void OnDestroy()
