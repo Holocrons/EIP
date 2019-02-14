@@ -5,34 +5,34 @@ using System;
 
 public class Follow : MonoBehaviour {
 
+    /*
+    ** This script is some nerd math I copied from stackoverflow, it calculate the angle of the his bone
+    */
+
     public GameObject _base;
     public GameObject _joint;
-    public float speed;
-    private SpriteRenderer _spr;
     public GameObject _toFollow;
-    private Vector2 target;
-    private double angle = 0f;
+    public float speed;
     public bool findGround = false;
     public int index = 0;
     public bool conraint;
     public int minc;
     public int maxc;
 
-    // Use this for initialization
+    private SpriteRenderer _spr;
+    private Vector2 target;
+    private double angle = 0f;
+   
     void Start () {
         _spr = GetComponent<SpriteRenderer>();
     }
 	
-	// Update is called once per frame
 	public void MyUpdate (GameObject prevBone) {
        if (_toFollow.tag != "bone" && findGround == true)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f);
             if (hit.collider != null && hit.collider.gameObject.tag != "player")
-            {
                 _toFollow.transform.position = hit.point;
-            }
-            Debug.Log(hit.collider.name);
         }
         target = _toFollow.transform.position;
         FollowTarget(prevBone);
@@ -43,8 +43,6 @@ public class Follow : MonoBehaviour {
         Vector3 dir = new Vector3(0,0);
         double offset = 0;
 
-        //if (prevBone != null)
-          //  offset = prevBone.GetComponent<Follow>().GetAngle();
         dir.x = target.x - _base.transform.position.x;
         dir.y = target.y - _base.transform.position.y;
         angle = Math.Atan2(dir.y, dir.x);

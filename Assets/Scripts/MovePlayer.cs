@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour {
 
+    /*
+    ** this is a test script, it's ugly don't stare at it or you will lose your sanity
+    */
+
     private float x = 0;
     private float y = 0;
     public float maxDist;
@@ -87,6 +91,8 @@ public class MovePlayer : MonoBehaviour {
 
     void Raycast()
     {
+
+        // I SAID DON'T READ IT
         Vector2 tmp = new Vector2(0, -5);
         Vector2 tmp2 = new Vector2(0, -5);
         Vector2 closestPos;
