@@ -65,11 +65,8 @@
     <Compile Include="Assets\Scripts\BossMovement.cs" />
     <Compile Include="Assets\Scripts\Deletdis.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
-    <Compile Include="Assets\Scripts\FollowCursor.cs" />
-    <Compile Include="Assets\Scripts\Mouse.cs" />
     <Compile Include="Assets\Scripts\MoveBackLegs.cs" />
     <Compile Include="Assets\Scripts\MovePlayer.cs" />
-    <Compile Include="Assets\Scripts\playerMovement.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Rémi/Desktop/EIP/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
