@@ -6,7 +6,7 @@ using UnityEngine;
 public class ArmManager : MonoBehaviour {
 
     /*
-    ** This script manage the his arm so each bone will alaways follow ToFallow or the next bone 
+    ** This script manage his arm so each bone will alaways follow ToFallow or the next bone 
     */
 
     public List<GameObject> armPrefabs;

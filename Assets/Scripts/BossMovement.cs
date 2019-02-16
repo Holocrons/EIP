@@ -27,6 +27,7 @@ public class BossMovement : MonoBehaviour
     private int nbLimbs = 4;
     private ArmManager firstLimb;
     private ArmManager secondLimb;
+    private RaycastHit2D groundHit;
 
 
     /*
@@ -47,7 +48,7 @@ public class BossMovement : MonoBehaviour
     private bool smashing = false;
 
     /*
-    **  Variables used for the shppting attack
+    **  Variables used for the throwing attack
     */
 
     public GameObject projectiles;
@@ -73,30 +74,33 @@ public class BossMovement : MonoBehaviour
         nbLimbs = firstLimb.armPrefabs.Count + secondLimb.armPrefabs.Count;
         Raycast();
         Movement();
+        AttackManager();
         if (hitpos != new Vector3(-1000, -1000))
             follow[nb].transform.position = Vector2.MoveTowards(follow[nb].transform.position, hitpos, speed * Time.deltaTime * 8f);
     }
 
+    void AttackManager()
+    {
+        if (smashing == true)
+            SmashAttack();
+        else if (shooting == true)
+            ThrowThings();
+        else if (going == true)
+            CircularAttack();
+
+    }
 
     void Movement()
     {
-        RaycastHit2D hit;
-
         if (nbLimbs <= 3 && nbLimbs > 1)
         {
             maxHight = 5.6f;
             minHight = 5.4f;
         }
-        if (Input.GetKey(KeyCode.D))
-            x = 1;
-        else if (Input.GetKey(KeyCode.A))
-            x = -1;
-        else
-            x = 0;
-        hit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist);
-        if (hit.collider != null && Vector2.Distance(transform.position, hit.transform.position) < minHight)
+        groundHit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist);
+        if (groundHit.collider != null && Vector2.Distance(transform.position, groundHit.transform.position) < minHight)
             y = 1;
-        else if (hit.collider != null && Vector2.Distance(transform.position, hit.transform.position) > maxHight)
+        else if (groundHit.collider != null && Vector2.Distance(transform.position, groundHit.transform.position) > maxHight)
             y = -1;
         else
             y = 0;
@@ -106,6 +110,16 @@ public class BossMovement : MonoBehaviour
             isMoving = true;
         if (smashing == false)
             transform.Translate(new Vector2(x, y) * speed * Time.deltaTime);
+    }
+
+    public void Move(int direction)
+    {
+        if (direction > 0)
+            x = 1;
+        else if (direction < 0)
+            x = -1;
+        else
+            x = 0;
     }
 
     Vector2 getClosestPos()
@@ -197,11 +211,11 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    public void SmashAttack(RaycastHit2D hit)
+    public void SmashAttack()
     {
         smashing = true;
         transform.Translate(new Vector2(0, -1) * speed * 6 * Time.deltaTime);
-        if (hit.collider != null && Vector2.Distance(transform.position, hit.transform.position) < 2)
+        if (groundHit.collider != null && groundHit.collider.tag != "player" && Vector2.Distance(transform.position, groundHit.transform.position) < 2)
         {
             smashing = false;
         }

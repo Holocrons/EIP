@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BasicMovement.cs" />
+    <Compile Include="Assets\BossIa.cs" />
     <Compile Include="Assets\Scripts\ArmManager.cs" />
     <Compile Include="Assets\Scripts\BossMovement.cs" />
     <Compile Include="Assets\Scripts\Deletdis.cs" />
