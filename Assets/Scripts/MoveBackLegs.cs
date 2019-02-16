@@ -15,6 +15,12 @@ public class MoveBackLegs : MonoBehaviour
     private float x;
     public float speed;
 
+    /*
+   ** this is a test script, it's ugly don't stare at it or you will lose your sanity
+   ** It's not used anymore but might be usefull for later 
+   ** /!\ it's not commanted /!\
+   */
+
     // Start is called before the first frame update
     void Start()
     {

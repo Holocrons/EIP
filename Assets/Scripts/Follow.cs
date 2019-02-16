@@ -6,7 +6,7 @@ using System;
 public class Follow : MonoBehaviour {
 
     /*
-    ** This script is some nerd math I copied from stackoverflow, it calculate the angle of the his bone
+    ** This script is some nerd math I copied from stackoverflow, it calculate the angle of the the limb
     */
 
     public GameObject _base;
@@ -22,11 +22,19 @@ public class Follow : MonoBehaviour {
     private SpriteRenderer _spr;
     private Vector2 target;
     private double angle = 0f;
-   
+
+    /*
+    ** this function get the sprite of the limb 
+    */ 
+       
     void Start () {
         _spr = GetComponent<SpriteRenderer>();
     }
 	
+    /*
+    ** this function is called form ArmManager (another script), it recalculate the angle and position of the limb 
+    */
+
 	public void MyUpdate (GameObject prevBone) {
        if (_toFollow.tag != "bone" && findGround == true)
         {
@@ -37,6 +45,10 @@ public class Follow : MonoBehaviour {
         target = _toFollow.transform.position;
         FollowTarget(prevBone);
     }
+
+    /*
+    ** this function is called form MyUpdate, it recalculate the angle of the limb 
+    */
 
     void FollowTarget(GameObject prevBone)
     {
@@ -60,6 +72,10 @@ public class Follow : MonoBehaviour {
         transform.position = new Vector3(target.x - dir.x, target.y - dir.y, 1);
     }
 
+    /*
+    ** this fucntion does Math stuff I don't really undrstand but if I don't do this, the angles are wrongs
+    */
+
     Vector2 SetMag(float n, Vector2 vec)
     {
         float m = (float)Math.Sqrt(vec.x * vec.x + vec.y * vec.y);
@@ -73,10 +89,18 @@ public class Follow : MonoBehaviour {
         return vec;
     }
 
+    /*
+    ** this fucntion gets the calculated angle of the limb 
+    */
+
     public double GetAngle()
     {
         return (angle);
     }
+
+    /*
+    ** this fucntion handle his destruction to remove itself form a list in ArmManager
+    */
 
     private void OnDestroy()
     {

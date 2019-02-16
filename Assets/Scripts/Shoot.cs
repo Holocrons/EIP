@@ -11,10 +11,19 @@ public class Shoot : MonoBehaviour
     public GameObject target;
     public GameObject parent;
 
+
+    /*
+    ** the projectile will last 1 second 
+    */
+    
     void Start()
     {
         Destroy(this.gameObject, 1);
     }
+
+    /*
+    ** each frame the projectiles will aims for the target and follows it 
+    */ 
 
     void Update()
     {

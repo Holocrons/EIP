@@ -9,6 +9,10 @@ public class BossMovement : MonoBehaviour
     ** This script takes care of the basic movement of the boss and his attacks. /!\ This is not his AI /!\
     */
 
+    /*
+    **  Variables used for the movement and the management of the limbs
+    */
+
     public float maxDist;
     public float speed = 5;
     public GameObject playerBis;
@@ -28,7 +32,8 @@ public class BossMovement : MonoBehaviour
     private ArmManager firstLimb;
     private ArmManager secondLimb;
     private RaycastHit2D groundHit;
-
+    private BossIa ai;
+    private bool start = true;
 
     /*
     **  Variables used for the circular attack
@@ -58,8 +63,14 @@ public class BossMovement : MonoBehaviour
     private float timerShoot = 0;
     private int shootCount = 0;
 
+    /*
+    ** this function gets the BossAi script from the boss, the two arms. It sets  the boss max and min altitude, the next position of his next set (-1000 is a error value like null),
+    ** the number of limbs who are still up and it reposition playerBis which is obselete
+    */ 
+
     void Start()
     {
+        ai = GetComponent<BossIa>();
         firstLimb = Arms[0].GetComponent<ArmManager>();
         secondLimb = Arms[1].GetComponent<ArmManager>();
         maxHight = 8.1f;
@@ -69,15 +80,33 @@ public class BossMovement : MonoBehaviour
         nbLimbs = firstLimb.armPrefabs.Count + secondLimb.armPrefabs.Count;
     }
 
+    /*
+    ** this function update the numbers of the limbs, the movement of the boss, and is attacks;
+    */
+
     void Update()
     {
+        if (start == true)
+        {
+            StartBoss();
+            return;
+        }
         nbLimbs = firstLimb.armPrefabs.Count + secondLimb.armPrefabs.Count;
         Raycast();
         Movement();
         AttackManager();
         if (hitpos != new Vector3(-1000, -1000))
             follow[nb].transform.position = Vector2.MoveTowards(follow[nb].transform.position, hitpos, speed * Time.deltaTime * 8f);
+        if (nbLimbs == 0)
+        {
+            ai.enabled = false;
+            this.enabled = false;
+        }
     }
+
+    /*
+    ** this functions manages the attacks of the boss
+    */
 
     void AttackManager()
     {
@@ -89,6 +118,10 @@ public class BossMovement : MonoBehaviour
             CircularAttack();
 
     }
+
+    /*
+    ** this functions manages the movements of the boss
+    */
 
     void Movement()
     {
@@ -112,6 +145,10 @@ public class BossMovement : MonoBehaviour
             transform.Translate(new Vector2(x, y) * speed * Time.deltaTime);
     }
 
+    /*
+    ** this functions move the boss it's called in BossIa
+    */
+
     public void Move(int direction)
     {
         if (direction > 0)
@@ -121,6 +158,10 @@ public class BossMovement : MonoBehaviour
         else
             x = 0;
     }
+
+    /*
+    ** this functions get the closest point to make a step
+    */
 
     Vector2 getClosestPos()
     {
@@ -160,6 +201,10 @@ public class BossMovement : MonoBehaviour
         return (tmp);
     }
 
+    /*
+    ** this prepares a raycast to move his legs/arms
+    */
+
     void Raycast()
     {
         Vector2 tmp = new Vector2(0, -5);
@@ -189,8 +234,27 @@ public class BossMovement : MonoBehaviour
     }
 
     /*
+    ** this functions code the little animation at the beging
+    */
+
+    void StartBoss()
+    {
+        transform.Translate(new Vector2(0,1 * Time.deltaTime * speed ));
+        if (transform.position.y >= 0.3f)
+        {
+            start = false;
+            ai.enabled = true;
+        }
+    }
+
+    /*
     **  All boss attacks are coded here
-    */ 
+    */
+
+
+    /*
+    **  this function shoots things at the player by changing the value in line 271  you change the number of projectiles that the boss launch in the same time
+    */
 
     public void ThrowThings()
     {
@@ -211,6 +275,10 @@ public class BossMovement : MonoBehaviour
         }
     }
 
+    /*
+    **  this function makes the boss smash the ground
+    */
+
     public void SmashAttack()
     {
         smashing = true;
@@ -220,6 +288,10 @@ public class BossMovement : MonoBehaviour
             smashing = false;
         }
     }
+
+    /*
+    **  this function make a circular motion with one of the arm to make a nice attack
+    */
 
     public void CircularAttack()
     {

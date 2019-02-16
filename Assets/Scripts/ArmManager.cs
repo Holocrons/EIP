@@ -6,7 +6,7 @@ using UnityEngine;
 public class ArmManager : MonoBehaviour {
 
     /*
-    ** This script manage his arm so each bone will alaways follow ToFallow or the next bone 
+    ** This script manage his arm so each bone will alaways follow ToFallow or the next limb
     */
 
     public List<GameObject> armPrefabs;
@@ -14,6 +14,10 @@ public class ArmManager : MonoBehaviour {
     public GameObject _base;
 
     private List<GameObject> _arm = new List<GameObject>();
+
+    /*
+    ** this function initialize all limb by setting their point that they must follow 
+    */
 
     void Start () {
         _arm = armPrefabs;
@@ -25,11 +29,19 @@ public class ArmManager : MonoBehaviour {
                 _arm[i].GetComponent<Follow>()._toFollow = _following;
         }
 	}
-	
-	void Update () {
+
+    /*
+    ** this function reposition all the limbs if there is any
+    */
+
+    void Update () {
         if (_arm.Count != 0)
             Reposition();
 	}
+
+    /*
+    ** this function reposition all the limbs by managing them individualy (see MyUpdate in Follow.cs for more info)
+    */
 
     void Reposition()
     {
@@ -46,6 +58,10 @@ public class ArmManager : MonoBehaviour {
         for (int i = _arm.Count - 2; i >= 0; i--)
             _arm[i].transform.position = _arm[i + 1].GetComponent<Follow>()._joint.transform.position;
     }
+
+    /*
+    ** this function removes a limb from the arm (but it don't deletes it !)
+    */
 
     public void RemoveArm(GameObject arm)
     {

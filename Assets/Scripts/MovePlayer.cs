@@ -6,7 +6,8 @@ public class MovePlayer : MonoBehaviour {
 
     /*
     ** this is a test script, it's ugly don't stare at it or you will lose your sanity
-    ** It's not used anymore
+    ** It's not used anymore but might be usefull for later 
+    ** /!\ it's not commanted /!\
     */
 
     private float x = 0;

@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class BossIa : MonoBehaviour
 {
-
     /*
-    ** 
     ** This script is the boss AI it tells him how and when to attack 
     ** (it's more a pathern then an AI but ¯\_(ツ)_/¯)
-    **
     */
+
+    public GameObject Target;
 
     private BossMovement bm;
     private float attackTimer;
     private float coolDown = 1f;
     private float distance;
 
-    public GameObject Target;
+    /*
+    ** this function sets the timer  and get the BossMovvement script 
+    */ 
 
     void Start()
     {
@@ -25,12 +26,19 @@ public class BossIa : MonoBehaviour
         bm = GetComponent<BossMovement>();
     }
 
+    /*
+    ** this function updtaes the Movement and the Attack
+    */
+
     void Update()
     {
         Movement();
         AttackManager();
     }
 
+    /*
+    ** this function makes the boss attack the player depending on the distance between them and the attack timer (advanced ai here)
+    */
 
     void AttackManager()
     {
@@ -38,7 +46,7 @@ public class BossIa : MonoBehaviour
 
         if (attackTimer <= Time.time)
         {
-            if (distance < 8 && distance > 6)
+            if (distance < 9 && distance > 7)
             {
                 bm.CircularAttack();
                 fixedtime = 2;
@@ -50,6 +58,10 @@ public class BossIa : MonoBehaviour
             RestartTimer(fixedtime);
         }
     }
+
+    /*
+    ** this function moves the boss toward the player
+    */
 
     void Movement()
     {
@@ -65,6 +77,10 @@ public class BossIa : MonoBehaviour
         else
             bm.Move(0);
     }
+
+    /*
+    ** this function restarts the timer and sets the coolDown to a random number between 0.5 and 2 
+    */
 
     void RestartTimer(float fixedTime = 0)
     {
