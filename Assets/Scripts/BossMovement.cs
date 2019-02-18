@@ -130,13 +130,14 @@ public class BossMovement : MonoBehaviour
             maxHight = 5.6f;
             minHight = 5.4f;
         }
-        groundHit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist);
+        groundHit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
         if (groundHit.collider != null && Vector2.Distance(transform.position, groundHit.transform.position) < minHight)
             y = 1;
         else if (groundHit.collider != null && Vector2.Distance(transform.position, groundHit.transform.position) > maxHight)
             y = -1;
         else
             y = 0;
+        Debug.Log(y);
         if (x == 0)
             isMoving = false;
         else
@@ -172,13 +173,13 @@ public class BossMovement : MonoBehaviour
         {
             if (x > 0)
             {
-                hit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist);
+                hit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
                 if (hit.collider != null && hit.collider.tag != "bone")
                     tmp = hit.point;
             }
             else
             {
-                hit = Physics2D.Raycast(new Vector2(transform.position.x - 6, transform.position.y), -Vector2.up, maxDist);
+                hit = Physics2D.Raycast(new Vector2(transform.position.x - 6, transform.position.y), -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
                 if (hit.collider != null && hit.collider.tag != "bone")
                     tmp = hit.point;
             }
@@ -187,13 +188,13 @@ public class BossMovement : MonoBehaviour
         {
             if (x > 0)
             {
-                hit = Physics2D.Raycast(new Vector2(transform.position.x + 6, transform.position.y), -Vector2.up, maxDist);
+                hit = Physics2D.Raycast(new Vector2(transform.position.x + 6, transform.position.y), -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
                 if (hit.collider != null && hit.collider.tag != "bone")
                     tmp = hit.point;
             }
             else
             {
-                hit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist);
+                hit = Physics2D.Raycast(transform.position, -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
                 if (hit.collider != null && hit.collider.tag != "bone")
                     tmp = hit.point;
             }
