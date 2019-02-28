@@ -20,7 +20,7 @@ public class BasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (Input.GetKey(KeyCode.D))
             x = 1;
         else if (Input.GetKey(KeyCode.Q))
@@ -34,7 +34,6 @@ public class BasicMovement : MonoBehaviour
         else
             y = 0;
         transform.Translate(new Vector2(x * 7 * Time.deltaTime, y * 7 * Time.deltaTime));
-        */
         Vector2.MoveTowards(transform.position, landing, 5f * Time.deltaTime * 8f);
 
 

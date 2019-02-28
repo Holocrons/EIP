@@ -1995,6 +1995,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.044
@@ -2039,10 +2043,6 @@ PrefabInstance:
         type: 3}
       propertyPath: findGround
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
@@ -4881,8 +4881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66c9ae194e03154ead8cb031689bb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nbBone: 2
-  _bone: {fileID: 1597459951138452, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
   armPrefabs:
   - {fileID: 2077435649}
   - {fileID: 44819255}
@@ -5812,6 +5810,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.85
@@ -5860,10 +5862,6 @@ PrefabInstance:
         type: 3}
       propertyPath: findGround
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
@@ -7760,6 +7758,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.624
@@ -7808,10 +7810,6 @@ PrefabInstance:
         type: 3}
       propertyPath: findGround
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
@@ -9398,15 +9396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a1052b677849747a64cfeed1604628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDist: 0
-  speed: 5
-  cam: {fileID: 0}
-  playerBis: {fileID: 0}
-  follow: []
-  debug: 0
-  limbs: []
-  parent: {fileID: 0}
-  otherPlayer: {fileID: 0}
 --- !u!1 &806117722
 GameObject:
   m_ObjectHideFlags: 0
@@ -9957,7 +9946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee96de3dd8be44449c3b69ff4096ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouse: 0
 --- !u!212 &826398898
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10177,8 +10165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66c9ae194e03154ead8cb031689bb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nbBone: 2
-  _bone: {fileID: 1597459951138452, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
   armPrefabs:
   - {fileID: 2039577881}
   - {fileID: 1560374229}
@@ -10845,7 +10831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee96de3dd8be44449c3b69ff4096ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouse: 0
 --- !u!50 &954939753
 Rigidbody2D:
   serializedVersion: 4
@@ -12050,6 +12035,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.227
@@ -12099,10 +12088,6 @@ PrefabInstance:
       propertyPath: _toFollow
       value: 
       objectReference: {fileID: 1735496808}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -14372,7 +14357,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1150386160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6307f0817e74b1449078fe72ea7a4f4, type: 3}
+  m_Script: {fileID: 11500000, guid: d80815afce117ce4aa85ff8bb52f6494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &1150386162
@@ -15776,6 +15761,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.85
@@ -15825,10 +15814,6 @@ PrefabInstance:
       propertyPath: _toFollow
       value: 
       objectReference: {fileID: 826398894}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -17226,7 +17211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee96de3dd8be44449c3b69ff4096ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouse: 1
 --- !u!212 &1437621216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18749,6 +18733,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.67
@@ -18798,10 +18786,6 @@ PrefabInstance:
       propertyPath: _toFollow
       value: 
       objectReference: {fileID: 826398894}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -19203,6 +19187,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.092
@@ -19252,10 +19240,6 @@ PrefabInstance:
       propertyPath: _toFollow
       value: 
       objectReference: {fileID: 1735496808}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -21120,7 +21104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee96de3dd8be44449c3b69ff4096ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouse: 0
 --- !u!212 &1735496812
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21980,8 +21963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66c9ae194e03154ead8cb031689bb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nbBone: 2
-  _bone: {fileID: 1597459951138452, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
   armPrefabs:
   - {fileID: 202148460}
   - {fileID: 875121510}
@@ -23575,8 +23556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66c9ae194e03154ead8cb031689bb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nbBone: 2
-  _bone: {fileID: 1597459951138452, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
   armPrefabs:
   - {fileID: 1014375726}
   - {fileID: 219756601}
@@ -23946,6 +23925,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4444653994166710, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.93
@@ -23994,10 +23977,6 @@ PrefabInstance:
         type: 3}
       propertyPath: findGround
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1314328469708448, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1216778302363146, guid: 597160f1915290f4ea1c37f1da31e259, type: 3}
       propertyPath: m_Layer
