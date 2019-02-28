@@ -137,7 +137,6 @@ public class BossMovement : MonoBehaviour
             y = -1;
         else
             y = 0;
-        Debug.Log(y);
         if (x == 0)
             isMoving = false;
         else
@@ -179,7 +178,7 @@ public class BossMovement : MonoBehaviour
             }
             else
             {
-                hit = Physics2D.Raycast(new Vector2(transform.position.x - 6, transform.position.y), -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
+                hit = Physics2D.Raycast(new Vector2(transform.position.x - 7, transform.position.y), -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
                 if (hit.collider != null && hit.collider.tag != "bone")
                     tmp = hit.point;
             }
@@ -188,7 +187,7 @@ public class BossMovement : MonoBehaviour
         {
             if (x > 0)
             {
-                hit = Physics2D.Raycast(new Vector2(transform.position.x + 6, transform.position.y), -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
+                hit = Physics2D.Raycast(new Vector2(transform.position.x + 7, transform.position.y), -Vector2.up, maxDist, 1 << LayerMask.NameToLayer("Ground"));
                 if (hit.collider != null && hit.collider.tag != "bone")
                     tmp = hit.point;
             }
@@ -254,7 +253,7 @@ public class BossMovement : MonoBehaviour
 
 
     /*
-    **  this function shoots things at the player by changing the value in line 271  you change the number of projectiles that the boss launch in the same time
+    **  this function shoots things at the player by changing the value in line 272  you change the number of projectiles that the boss launch in the same time
     */
 
     public void ThrowThings()
@@ -265,11 +264,11 @@ public class BossMovement : MonoBehaviour
             tmp = Instantiate(projectiles, transform.position, transform.rotation);
             tmp.GetComponent<Shoot>().parent = this.gameObject;
             tmp.GetComponent<Shoot>().target = player;
-            timerShoot = Time.time + 0.2f;
+            timerShoot = Time.time + 0.3f;
             shooting = true;
             shootCount++;
         }
-        if (shootCount >= 3)
+        if (shootCount >= 2)
         {
             shootCount = 0;
             shooting = false;

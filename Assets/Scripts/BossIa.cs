@@ -46,15 +46,15 @@ public class BossIa : MonoBehaviour
 
         if (attackTimer <= Time.time)
         {
-            if (distance < 9 && distance > 7)
+            if (distance < 9 && distance > 6.5f)
             {
                 bm.CircularAttack();
                 fixedtime = 2;
             }
-            else if (distance > 8)
-                bm.ThrowThings();
-            else
+            else if (distance < 6.5 && Target.transform.position.y < transform.position.y)
                 bm.SmashAttack();
+            else
+                bm.ThrowThings();
             RestartTimer(fixedtime);
         }
     }
@@ -85,7 +85,7 @@ public class BossIa : MonoBehaviour
     void RestartTimer(float fixedTime = 0)
     {
         if (fixedTime == 0)
-            coolDown = Random.Range(0.5f, 2f);
+            coolDown = Random.Range(1f, 2.5f);
         else
             coolDown = fixedTime;
         attackTimer = coolDown + Time.time;
