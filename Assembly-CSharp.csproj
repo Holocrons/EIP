@@ -61,20 +61,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ArmManager.cs" />
     <Compile Include="Assets\Scripts\BasicMovement.cs" />
-    <Compile Include="Assets\Scripts\BossIa.cs" />
-    <Compile Include="Assets\Scripts\BossMovement.cs" />
     <Compile Include="Assets\Scripts\Coordinates.cs" />
     <Compile Include="Assets\Scripts\EnemyFollow.cs" />
-    <Compile Include="Assets\Scripts\Follow.cs" />
-    <Compile Include="Assets\Scripts\LimbManager.cs" />
-    <Compile Include="Assets\Scripts\MoveBackLegs.cs" />
+    <Compile Include="Assets\Scripts\FirstBoss\BossIa.cs" />
+    <Compile Include="Assets\Scripts\FirstBoss\BossMovement.cs" />
+    <Compile Include="Assets\Scripts\FirstBoss\LimbManager.cs" />
+    <Compile Include="Assets\Scripts\FirstBoss\MoveBackLegs.cs" />
+    <Compile Include="Assets\Scripts\FirstBoss\Shoot.cs" />
+    <Compile Include="Assets\Scripts\InversKinematics\ArmManager.cs" />
+    <Compile Include="Assets\Scripts\InversKinematics\Follow.cs" />
     <Compile Include="Assets\Scripts\MovePlayer.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Yolotron.cs" />
-    <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\StartMenu\MainMenu.cs" />
     <None Include="Assets\StartMenu\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\StartMenu\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
