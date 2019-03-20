@@ -79,7 +79,7 @@ public class BossIa : MonoBehaviour
     }
 
     /*
-    ** this function restarts the timer and sets the coolDown to a random number between 0.5 and 2 
+    ** this function restarts the timer and sets the coolDown to a random number between 1 and 2.5 
     */
 
     void RestartTimer(float fixedTime = 0)

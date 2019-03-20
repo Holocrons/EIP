@@ -51,6 +51,7 @@ public class BossMovement : MonoBehaviour
     */
 
     private bool smashing = false;
+    public GameObject attackBox;
 
     /*
     **  Variables used for the throwing attack
@@ -283,9 +284,11 @@ public class BossMovement : MonoBehaviour
     {
         smashing = true;
         transform.Translate(new Vector2(0, -1) * speed * 6 * Time.deltaTime);
+        attackBox.SetActive(true);
         if (groundHit.collider != null && groundHit.collider.tag != "player" && Vector2.Distance(transform.position, groundHit.transform.position) < 2)
         {
             smashing = false;
+            attackBox.SetActive(false);
         }
     }
 
