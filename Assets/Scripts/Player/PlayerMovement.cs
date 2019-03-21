@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour {
 
     public PlayerController pc;
     private Rigidbody2D rb;
+    private Animator anim;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
 	void Update () {
@@ -42,6 +44,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             rb.AddForce(new Vector2(0f, pc.jumpHeight), ForceMode2D.Impulse);
             airborne = true;
+            anim.SetBool("jumping", jump);
         }
+        if (move != 0)
+            anim.SetBool("running", true);
+        else
+            anim.SetBool("running", false);
     }
 }

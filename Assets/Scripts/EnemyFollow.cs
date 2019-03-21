@@ -5,36 +5,40 @@ using UnityEngine;
 public class EnemyFollow : MonoBehaviour
 {
     public float speed;
-
-    int x = 0;
-    float range = 5f;
+    private int x = 0;
+    public float range = 5f;
     private bool isFacingRight = false;
+    public float attackRange = 1f;
+    private bool attacking = false;
+    public float attackCd = 0.5f;
+    private float attackTimer = 0;
+    public GameObject attackBox;
+    private Animator anim;
 
     public Transform target;
 
     void Start ()
     {
-       // target = GameObject.FindGameObjectWithTag("player").GetComponent<Transform>(); 
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        /* if (Vector2.Distance(transform.position, target.position) > 3)
-         {
-             float stock_y = transform.position.y;
-             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-             transform.position = new Vector2(transform.position.x, stock_y);
-         }*/
-
-        if (target.position.x > transform.position.x)
+        if (attackTimer < Time.time)
+        {
+            attacking = false;
+            attackBox.SetActive(false);
+        }
+        if (target.position.x > transform.position.x && attacking == false)
         {
             x = 1;
-        } else
+        }
+        else if (attacking == false)
         {
-           x = -1;
+            x = -1;
         }
         flipSprite(x);
-        enemyAggro(x);
+        enemyAggro(x);   
     }
 
     void flipSprite(int x)
@@ -50,13 +54,25 @@ public class EnemyFollow : MonoBehaviour
 
     void enemyAggro(int x)
     {
-        if (Vector2.Distance(transform.position, target.position) <= range)
+        float dist = Vector2.Distance(transform.position, target.position);
+
+        if (dist <= range && dist > attackRange && attacking == false)
         {
-            if (Vector2.Distance(transform.position, target.position) > 1)
-            {
-                transform.Translate(new Vector2(x, 0) * speed * Time.deltaTime);
-            }
+            transform.Translate(new Vector2(x, 0) * speed * Time.deltaTime);
+            anim.SetBool("running", true);
         }
+        else if (dist <= attackRange && attacking == false)
+        {
+            attacking = true;
+            attackTimer = Time.time + attackCd;
+            attackBox.SetActive(true);
+            anim.SetBool("running", false);
+        }
+        else
+        {
+            anim.SetBool("running", false);
+        }
+        anim.SetBool("attacking", attacking);
     }
 }    
 
