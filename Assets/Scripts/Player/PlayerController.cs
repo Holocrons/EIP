@@ -25,13 +25,15 @@ public class PlayerController : MonoBehaviour {
 
     private bool requestJump = false;
     private int jumps = 0;
+    private Animator anim;
 
 	// Use this for initialization
 	void Awake () {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
-        Component.FindChi
+        //Component.FindChi
+        anim = GetComponent<Animator>();
     }  
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour {
         {
             jumps = 0;
             airborne = false;
+            anim.SetBool("jumping", airborne);
         }
         if (collision.gameObject.tag.Contains("Terrain-Wall"))
         {             
