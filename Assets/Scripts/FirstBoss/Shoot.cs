@@ -11,6 +11,8 @@ public class Shoot : MonoBehaviour
     public GameObject target;
     public GameObject parent;
 
+    private bool left = true;
+
 
     /*
     ** the projectile will last 1 second 
@@ -18,11 +20,18 @@ public class Shoot : MonoBehaviour
     
     void Start()
     {
+        if (target.transform.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector2(-0.75f, 0.75f);
+            left = false;
+        }
         Vector2 lookAtThis = target.transform.position - transform.position;
-
         lookAtThis.Normalize();
         float rot_z = Mathf.Atan2(lookAtThis.y, lookAtThis.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        if (left)
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 180);
+        else
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
         Destroy(this.gameObject, 1);
     }
 
@@ -33,7 +42,10 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         
-        transform.Translate(Vector2.up * 20 * Time.deltaTime);
+        if (left)
+            transform.Translate(-Vector2.right * 20 * Time.deltaTime);
+        else
+            transform.Translate(Vector2.right * 20 * Time.deltaTime);
     }
 
     /*

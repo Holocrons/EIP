@@ -14,11 +14,18 @@ public class EnemyFollow : MonoBehaviour
     private float attackTimer = 0;
     public GameObject attackBox;
     private Animator anim;
+    private Rigidbody2D rb;
+    private bool bump = false;
+    private float bumpTimer = 0;
 
     public Transform target;
+    public int hp = 3;
+    public float bumpDuration = 0.5f;
+
 
     void Start ()
     {
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -56,7 +63,7 @@ public class EnemyFollow : MonoBehaviour
     {
         float dist = Vector2.Distance(transform.position, target.position);
 
-        if (dist <= range && dist > attackRange && attacking == false)
+        if (dist <= range && dist > attackRange && attacking == false && bump == false)
         {
             transform.Translate(new Vector2(x, 0) * speed * Time.deltaTime);
             anim.SetBool("running", true);
@@ -73,6 +80,21 @@ public class EnemyFollow : MonoBehaviour
             anim.SetBool("running", false);
         }
         anim.SetBool("attacking", attacking);
+        if (bump == true && bumpTimer <= Time.time)
+            bump = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "dommage")
+        {
+            hp -= 1;
+            bump = true;
+            if (hp <= 0)
+                Destroy(this.gameObject);
+            bumpTimer = bumpDuration + Time.time;
+            rb.AddForce(new Vector2(transform.localScale.x, 3) * Time.deltaTime * 50, ForceMode2D.Impulse);
+        }
     }
 }    
 

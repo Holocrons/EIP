@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\PauseMenu\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\BasicMovement.cs" />
     <Compile Include="Assets\Scripts\Coordinates.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Yolotron.cs" />
+    <Compile Include="Assets\Scripts\TakeDommage.cs" />
     <Compile Include="Assets\StartMenu\MainMenu.cs" />
     <None Include="Assets\StartMenu\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\StartMenu\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
