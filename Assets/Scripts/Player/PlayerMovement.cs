@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (jump)
         {
-            rb.AddForce(new Vector2(0f, pc.jumpHeight), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0f, 0), ForceMode2D.Impulse);
             airborne = true;
             anim.SetBool("jumping", jump);
         }

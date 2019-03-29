@@ -49,7 +49,7 @@ public class TakeDommage : MonoBehaviour
             int bump = -3;
             if (transform.position.x < collision.transform.position.x)
                 bump = 3;
-            //rb.AddForce(new Vector2(bump ,3) * Time.deltaTime * 500, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(bump ,5) * Time.deltaTime * 250, ForceMode2D.Impulse);
         }
     }
 
