@@ -22,6 +22,7 @@ public class Follow : MonoBehaviour {
     private SpriteRenderer _spr;
     private Vector2 target;
     private double angle = 0f;
+    private float size;
 
     /*
     ** this function get the sprite of the limb 
@@ -29,6 +30,7 @@ public class Follow : MonoBehaviour {
        
     void Start () {
         _spr = GetComponent<SpriteRenderer>();
+        size = Vector2.Distance(_joint.transform.position, _base.transform.position);
     }
 	
     /*
@@ -68,7 +70,7 @@ public class Follow : MonoBehaviour {
         }
         angle -= 360;
         transform.eulerAngles = new Vector3(0, 0, (float)angle);
-        dir = SetMag(_spr.size.x * transform.localScale.x, dir);
+        dir = SetMag(size, dir);
         transform.position = new Vector3(target.x - dir.x, target.y - dir.y, 1);
     }
 

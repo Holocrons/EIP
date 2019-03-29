@@ -12,7 +12,17 @@ public class LimbManager : MonoBehaviour
 
     public int hp = 20;
 
+    private bool vul = true;
     private float recoveryTimer = 0;
+    private SpriteRenderer sp;
+    private float blinkTimer = 0;
+    private bool isOk = false;
+
+    private void Start()
+    {
+        sp = GetComponent<SpriteRenderer>();
+    }
+
 
     /*
     ** Destroys the limb when hp is equale to 0 
@@ -22,6 +32,10 @@ public class LimbManager : MonoBehaviour
     {
         if (hp <= 0)
             Destroy(this.gameObject);
+        if (vul == false && recoveryTimer <= Time.time)
+            vul = true;
+        if (vul == false)
+            Blink();
     }
 
     /*
@@ -30,10 +44,22 @@ public class LimbManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "dommage" && recoveryTimer <= Time.time)
+        if (collision.tag == "dommage" && vul == true)
         {
             recoveryTimer = Time.time + 0.5f;
+            blinkTimer = Time.time + 0.1f;
             hp--;
+            vul = false;
+        }
+    }
+
+    void Blink()
+    {
+        if (blinkTimer <= Time.time)
+        {
+            sp.enabled = isOk;
+            blinkTimer = Time.time + 0.1f;
+            isOk = !isOk;
         }
     }
 }
