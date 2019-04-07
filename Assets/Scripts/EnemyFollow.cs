@@ -50,7 +50,7 @@ public class EnemyFollow : MonoBehaviour
 
     void flipSprite(int x)
     {
-        if ((x > 0 && !isFacingRight) || (x < 0 && isFacingRight))
+        if (((x > 0 && !isFacingRight) || (x < 0 && isFacingRight)) && Vector2.Distance(transform.position, target.position) >= 3)
         {
             isFacingRight = !isFacingRight;
             Vector2 newScale = transform.localScale;
