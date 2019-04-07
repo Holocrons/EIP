@@ -29,8 +29,7 @@ public class LookAtTarget : MonoBehaviour
         t = Math.Acos(t);
         t = t * 180 / Math.PI;
         transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + (float)t);
-        tmp = _targetCoor.x * (_baseCoor.y - _effectorCoor.y) + _baseCoor.x * (_effectorCoor.y - _targetCoor.y) + _effectorCoor.x * (_targetCoor.y - _baseCoor.y);
-        if (tmp > 1.5f || tmp < -1.5f)
+        if (Vector2.Distance(_targetCoor, _baseCoor) < Vector2.Distance(_targetCoor, _effectorCoor))
         {
             Turn();
         }
