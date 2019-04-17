@@ -18,6 +18,7 @@ public class ReSpawnMap : MonoBehaviour
         Vector2 playerPos = new Vector2(player.position.x + 2, player.position.y);
 
         //Instantiate(item, playerPos, Quaternion.identity);
+
         item.gameObject.SetActive(true);
     }
 }
