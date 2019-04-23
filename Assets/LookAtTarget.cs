@@ -16,23 +16,46 @@ public class LookAtTarget : MonoBehaviour
     private float _targetBaseLenght;
     private float _baseEffectorLenght;
     private float _effectorTargetLenght;
+    private double toTurn = 0;
+    private bool turning;
 
+    private void Start()
+    {
+        toTurn = 0;
+        turning = false;
+    }
 
-    public void Turn()
+    private void Update()
+    {
+        if (toTurn > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 1);
+            turning = true;
+            toTurn--;
+        }
+        else
+        {
+            toTurn = 0;
+            turning = false;
+        }
+    }
+
+    public bool Turn()
     {
         float tmp;
-
+        Debug.Log(turning);
+        if (turning == true)
+            return (false);
         UpdateVal();
         tmp = _targetCoor.x * (_baseCoor.y - _effectorCoor.y) + _baseCoor.x * (_effectorCoor.y - _targetCoor.y) + _effectorCoor.x * (_targetCoor.y - _baseCoor.y);
+        if (tmp < 1 && tmp > -1)
+            return (true);
         double t = Math.Pow(_targetBaseLenght, 2) + Math.Pow(_baseEffectorLenght, 2) - Math.Pow(_effectorTargetLenght, 2);
         t = t / (2 * _targetBaseLenght * _baseEffectorLenght);
         t = Math.Acos(t);
         t = t * 180 / Math.PI;
-        transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + (float)t);
-        if (Vector2.Distance(_targetCoor, _baseCoor) < Vector2.Distance(_targetCoor, _effectorCoor))
-        {
-            Turn();
-        }
+        toTurn = t;
+        return (false);
     }
 
     void UpdateVal()
