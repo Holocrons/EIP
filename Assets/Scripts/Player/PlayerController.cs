@@ -4,37 +4,55 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    // Need for ground collision check
     public Transform groundChecker;
-    public float jumpVelocity = 10;
-    public int speed = 5;
+    private bool isGrounded = true;
 
-    public int maxJumps = 1;
-
+    // Jump configuration and tracking
+    public float jumpVelocity = 2000;
+    public int maxJumps = 2;
     private int currentJumps = 0;
 
+    // Movement speed
+    public int speed = 15;
+    // Default direction the character sprite is looking at
+    public bool lookingRight = true;
+    private int movementDirection = 0;
+
+    // Wall collision and attachment
     private bool wallLatch = false;
     private int latchDirection = 0;
-    private int movementDirection = 0;
-    private float defaultGravity;
-    private bool isGrounded = true;
-    private Rigidbody2D rb;
+
+    // Player dash
+    public float dashDistance = 350;
+    public int dashCooldown = 3000;
+    private float dashRemainingCooldown = 0;
+
     private int layerMask;
+    private Rigidbody2D rb;
+    private SpriteRenderer sp;
     private Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        defaultGravity = rb.gravityScale;
         layerMask = 1 << 10;
         layerMask = ~layerMask;
     }
 
     private void Update()
     {
-        Move();
+        if (dashRemainingCooldown > 0)
+            dashRemainingCooldown -= Time.deltaTime * 1000;
+    }
+
+    private void FixedUpdate()
+    {
         GroundRaycast();
         Jump();
+        Move();
         anim.SetBool("jumping", !isGrounded);
     }
 
@@ -42,21 +60,23 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space) && maxJumps > currentJumps)
         {
-            rb.velocity = Vector2.up * jumpVelocity * Time.deltaTime;
+            rb.velocity = Vector2.up * jumpVelocity * Time.fixedDeltaTime;
             currentJumps++;
+            //wallLatch = false;
             /*
             if (wallLatch)
                 rb.gravityScale = defaultGravity;
-            wallLatch = false;
             */
             // Debug.Log("Jumps : " + currentJumps);
         }
+
+        // If the player is falling, increase the gravity for a smoother jump
         if (rb.velocity.y < 0 && isGrounded == false)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * 1.5f * Time.deltaTime;
+            rb.velocity += Vector2.up * Physics2D.gravity.y * 1.5f * Time.fixedDeltaTime;
         }
         else if (rb.velocity.y > 0 && isGrounded == false)
-            rb.velocity += Vector2.up * Physics2D.gravity.y * 1f * Time.deltaTime;
+            rb.velocity += Vector2.up * Physics2D.gravity.y * 1f * Time.fixedDeltaTime;
     }
 
     private void Move()
@@ -65,26 +85,43 @@ public class PlayerController : MonoBehaviour {
         {
             movementDirection = 1;
             anim.SetBool("running", true);
+            lookingRight = true;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             movementDirection = -1;
             anim.SetBool("running", true);
+            lookingRight = false;
         }
         else
         {
             movementDirection = 0;
             anim.SetBool("running", false);
         }
-        
-        if (!wallLatch || movementDirection == latchDirection)
-            transform.Translate(new Vector2(movementDirection, 0) * Time.deltaTime * speed);
+
+        sp.flipX = !lookingRight;
+
+        if (dashRemainingCooldown <= 0 && Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(new Vector2(lookingRight ? 1 : -1, 0) * Time.fixedDeltaTime * dashDistance);
+            dashRemainingCooldown = dashCooldown;
+        }
+
+
+        if (!wallLatch || movementDirection == latchDirection && wallLatch)
+            transform.Translate(new Vector2(movementDirection, 0) * Time.fixedDeltaTime * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         // https://answers.unity.com/questions/783377/detect-side-of-collision-in-box-collider-2d.html
+
+        /*
+         * Most of this function is currently useless or rather unused.
+         * The main goal of this segment is to detect on which side the character touches a walls
+         * This is needed for the "wall-latch" mechanic and not runnig into walls
+         */
 
         Collider2D collider = collision.collider;
         bool collideFromLeft = false;

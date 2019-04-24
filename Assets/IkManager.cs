@@ -8,7 +8,6 @@ public class IkManager : MonoBehaviour
     public GameObject target;
     public GameObject effector;
     private int f;
-    private float tmp = 0;
 
     // Start is called before the first frame update
     void Start()    
@@ -19,20 +18,15 @@ public class IkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //limbList[f].GetComponent<LookAtTarget>().Turn();
-        //MoveLimbs();
-
-        if (Vector2.Distance(target.transform.position, effector.transform.position) > 1)
+        if (Vector2.Distance(target.transform.position, effector.transform.position) > 0.25f)
         {
-            if (limbList[f].GetComponent<LookAtTarget>().Turn() == true)
-            {
-                Debug.Log("lol");
-                tmp++;
+            limbList[f].GetComponent<LookAtTarget>().Turn();
                 f--;
-            }
             if (f < 0)
                 f = limbList.Count - 1;
         }
+        else
+            f = limbList.Count - 1;
     }
 
     void MoveLimbs()

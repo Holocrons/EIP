@@ -16,46 +16,40 @@ public class LookAtTarget : MonoBehaviour
     private float _targetBaseLenght;
     private float _baseEffectorLenght;
     private float _effectorTargetLenght;
-    private double toTurn = 0;
-    private bool turning;
+    private float isAlligned = 100;
 
     private void Start()
     {
-        toTurn = 0;
-        turning = false;
     }
 
     private void Update()
     {
-        if (toTurn > 0)
+        /*if (toTurn > 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 1);
+            transform.Rotate(new Vector3(0, 0, 1 * Time.deltaTime * 500));
             turning = true;
-            toTurn--;
-        }
-        else
-        {
-            toTurn = 0;
-            turning = false;
-        }
+            UpdateVal();
+            if (isAlligned < 1 && isAlligned > -1)
+            {
+                toTurn = -1;
+                //turning = false;
+            }
+        }*/
     }
 
-    public bool Turn()
+    public void Turn()
     {
-        float tmp;
-        Debug.Log(turning);
-        if (turning == true)
-            return (false);
         UpdateVal();
-        tmp = _targetCoor.x * (_baseCoor.y - _effectorCoor.y) + _baseCoor.x * (_effectorCoor.y - _targetCoor.y) + _effectorCoor.x * (_targetCoor.y - _baseCoor.y);
-        if (tmp < 1 && tmp > -1)
-            return (true);
+        if (isAlligned < 0.5f && isAlligned > -0.5f)
+            return;
         double t = Math.Pow(_targetBaseLenght, 2) + Math.Pow(_baseEffectorLenght, 2) - Math.Pow(_effectorTargetLenght, 2);
         t = t / (2 * _targetBaseLenght * _baseEffectorLenght);
         t = Math.Acos(t);
         t = t * 180 / Math.PI;
-        toTurn = t;
-        return (false);
+        transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z + (float)t);
+        UpdateVal();
+        if (isAlligned > 0.5f || isAlligned < -0.5f)
+            transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z - ((float)t * 2));
     }
 
     void UpdateVal()
@@ -67,6 +61,7 @@ public class LookAtTarget : MonoBehaviour
         _targetBaseLenght = Vector2.Distance(_targetCoor, _baseCoor);
         _baseEffectorLenght = Vector2.Distance(_baseCoor, _effectorCoor);
         _effectorTargetLenght = Vector2.Distance(_effectorCoor, _targetCoor);
+        isAlligned = _targetCoor.x * (_baseCoor.y - _effectorCoor.y) + _baseCoor.x * (_effectorCoor.y - _targetCoor.y) + _effectorCoor.x * (_targetCoor.y - _baseCoor.y);
     }
 
 }
