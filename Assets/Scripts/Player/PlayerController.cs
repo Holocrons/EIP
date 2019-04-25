@@ -2,33 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Player controller and variables to ajust its mechanics
+/// </summary>
 public class PlayerController : MonoBehaviour {
 
-    // Need for ground collision check
+    /// <summary>
+    /// A simple object used for ground collision
+    /// </summary>
     public Transform groundChecker;
     private bool isGrounded = true;
 
-    // Jump configuration and tracking
+    /// <summary>
+    /// Variables used to controll jump mechanics and parameters
+    /// </summary>
     public float jumpVelocity = 2000;
     public int maxJumps = 2;
     private int currentJumps = 0;
 
-    // Movement speed
+    /// <summary>
+    /// Movement speed of the player and it's direction
+    /// </summary>
     public int speed = 15;
     // Default direction the character sprite is looking at
     public bool lookingRight = true;
     private int movementDirection = 0;
 
-    // Wall collision and attachment
+    /// <summary>
+    /// Checks if the player is connected to a wall
+    /// </summary>
     private bool wallLatch = false;
     private int latchDirection = 0;
 
-    // Player dash
+    /// <summary>
+    /// Player dash, simple horizontal displacement
+    /// </summary>
     public float dashDistance = 350;
     public int dashCooldown = 3000;
     private float dashRemainingCooldown = 0;
 
+    /// <summary>
+    /// Layer on which the player is, used for collision
+    /// </summary>
     private int layerMask;
+
+    /// <summary>
+    /// Various component variables
+    /// </summary>
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private Animator anim;
