@@ -58,36 +58,45 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+
         layerMask = 1 << 10;
         layerMask = ~layerMask;
     }
 
+    /// <summary>
+    /// For now, only the dash cooldown is updated any time you can
+    /// </summary>
     private void Update()
     {
         if (dashRemainingCooldown > 0)
             dashRemainingCooldown -= Time.deltaTime * 1000;
     }
 
+    /// <summary>
+    /// Physics calculation have to be made at a fixed interval, else jumpforces and horizontal
+    /// position translations are too random.
+    /// </summary>
     private void FixedUpdate()
     {
         GroundRaycast();
+
         Jump();
         Move();
+        Dash();
+
+        FlipSprite();
         anim.SetBool("jumping", !isGrounded);
     }
 
+    /// <summary>
+    /// Jumps are handled by an upwards force and limited by a counter
+    /// </summary>
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && maxJumps > currentJumps)
         {
             rb.velocity = Vector2.up * jumpVelocity * Time.fixedDeltaTime;
             currentJumps++;
-            //wallLatch = false;
-            /*
-            if (wallLatch)
-                rb.gravityScale = defaultGravity;
-            */
-            // Debug.Log("Jumps : " + currentJumps);
         }
 
         // If the player is falling, increase the gravity for a smoother jump
@@ -99,6 +108,10 @@ public class PlayerController : MonoBehaviour {
             rb.velocity += Vector2.up * Physics2D.gravity.y * 1f * Time.fixedDeltaTime;
     }
 
+    /// <summary>
+    /// Horizontal movement is handled by simple translations
+    /// If the player starts moving or halts, the animation status is updated
+    /// </summary>
     private void Move()
     {
         if (Input.GetKey(KeyCode.D))
@@ -119,30 +132,40 @@ public class PlayerController : MonoBehaviour {
             anim.SetBool("running", false);
         }
 
-        sp.flipX = !lookingRight;
+        if (!wallLatch || movementDirection == latchDirection && wallLatch)
+            transform.Translate(new Vector2(movementDirection, 0) * Time.fixedDeltaTime * speed);
+    }
 
+    /// <summary>
+    /// The dash is a horizontal displacement that is done instantly
+    /// For now it ignores unit collision and goes through walls, which is un-intended. (see HNP#155)
+    /// </summary>
+    private void Dash()
+    {
         if (dashRemainingCooldown <= 0 && Input.GetKey(KeyCode.LeftShift))
         {
             transform.Translate(new Vector2(lookingRight ? 1 : -1, 0) * Time.fixedDeltaTime * dashDistance);
             dashRemainingCooldown = dashCooldown;
         }
-
-
-        if (!wallLatch || movementDirection == latchDirection && wallLatch)
-            transform.Translate(new Vector2(movementDirection, 0) * Time.fixedDeltaTime * speed);
     }
 
+    /// <summary>
+    /// Makes the sprite turn left or right... can't be that hard...
+    /// </summary>
+    private void FlipSprite()
+    {
+        sp.flipX = !lookingRight;
+    }
+
+    /// <summary>
+    /// Most of this function is currently useless or rather unused.
+    /// The main goal of this segment is to detect on which side the character touches a walls
+    //// This is needed for the "wall-latch" mechanic and not runnig into walls
+    /// </summary>
+    /// <param name="collision">The gameobject it collided with</param>
+    /// <seealso cref="https://answers.unity.com/questions/783377/detect-side-of-collision-in-box-collider-2d.html">Code source</see>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        // https://answers.unity.com/questions/783377/detect-side-of-collision-in-box-collider-2d.html
-
-        /*
-         * Most of this function is currently useless or rather unused.
-         * The main goal of this segment is to detect on which side the character touches a walls
-         * This is needed for the "wall-latch" mechanic and not runnig into walls
-         */
-
         Collider2D collider = collision.collider;
         bool collideFromLeft = false;
         bool collideFromTop = false;
@@ -186,9 +209,11 @@ public class PlayerController : MonoBehaviour {
             if (collideFromRight)
                 latchDirection = 1;
         }
-
     }
 
+    /// <summary>
+    /// Ground check made with a downwards raycast
+    /// </summary>
     private void GroundRaycast()
     {
         RaycastHit2D hit;
