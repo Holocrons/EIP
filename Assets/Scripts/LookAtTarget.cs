@@ -8,6 +8,7 @@ public class LookAtTarget : MonoBehaviour
     public GameObject _target;
     public GameObject _base;
     public GameObject _effector;
+    public GameObject _joint;
 
     private Vector2 _targetCoor;
     private Vector2 _baseCoor;
