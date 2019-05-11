@@ -16,6 +16,8 @@ public class TakeDommage : MonoBehaviour
     public float attackCd = 0.5f;
     public float attackCd2 = 0.5f;
     public GameObject attackBox;
+    public GameObject dmgImage;
+    public GameObject healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +70,9 @@ public class TakeDommage : MonoBehaviour
         if (collision.tag == "attackBox" && isHit == false)
         {
             hp -= 1;
+            GameObject tmp = Instantiate(dmgImage);
+            tmp.transform.parent = healthBar.transform;
+            tmp.GetComponent<RectTransform>().localPosition = new Vector3(30 + hp * 50, -20, 0);          
             float bump = 7f;
             if (transform.position.x < collision.transform.position.x)
                 bump = -7f;
@@ -75,6 +80,7 @@ public class TakeDommage : MonoBehaviour
             GetComponent<PlayerController>().enabled = false;
             damageTimer = Time.time + 0.75f;
             isHit = true;
+           
         }
     }
 
