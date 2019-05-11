@@ -9,7 +9,8 @@ public class TakeDommage : MonoBehaviour
     private bool attacking = false;
     private float attackTimer2 = 0;
     private Rigidbody2D rb;
-
+    private float damageTimer = 0;
+    private bool isHit = false;
 
     public int hp = 10;
     public float attackCd = 0.5f;
@@ -31,25 +32,49 @@ public class TakeDommage : MonoBehaviour
             anim.SetBool("attacking", true);
             attackTimer = Time.time + attackCd;
             attacking = true;
+            
+            attackBox.SetActive(attacking);
         }
         if (attacking == true && attackTimer <= Time.time)
         {
             anim.SetBool("attacking", false);
             attacking = false;
+            attackBox.SetActive(attacking);
             attackTimer2 = Time.time + attackCd2;
         }
-        attackBox.SetActive(attacking);
+        if (attacking == true)
+        {
+            attackBox.transform.localPosition = new Vector2(0, 0);
+            if (attackBox.transform.parent.transform.GetComponent<SpriteRenderer>().flipX)
+                attackBox.transform.localScale = new Vector2(-1 , 1);
+            else
+                attackBox.transform.localScale = new Vector2(1, 1);
+        }
+        if (hp <= 0)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<PlayerController>().enabled = false;
+            this.enabled = false;
+        }
+        if (isHit == true && damageTimer <= Time.time)
+        {
+            GetComponent<PlayerController>().enabled = true;
+            isHit = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "attackBox")
+        if (collision.tag == "attackBox" && isHit == false)
         {
             hp -= 1;
-            int bump = -3;
+            float bump = 7f;
             if (transform.position.x < collision.transform.position.x)
-                bump = 3;
+                bump = -7f;
             rb.AddForce(new Vector2(bump ,5) * Time.deltaTime * 250, ForceMode2D.Impulse);
+            GetComponent<PlayerController>().enabled = false;
+            damageTimer = Time.time + 0.75f;
+            isHit = true;
         }
     }
 
