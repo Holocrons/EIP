@@ -27,6 +27,6 @@ public class ReSpawnMap : MonoBehaviour
         //itemButton.gameObject.SetActive(true);
         this.gameObject.SetActive(true);
         this.transform.position = playerPos;
-        Instantiate(inventory.gameObject, playerPos, Quaternion.identity);
+        //Instantiate(inventory.gameObject, playerPos, Quaternion.identity);
     }
 }

@@ -11402,6 +11402,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &965032579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1453466782714660, guid: aa9adbca13c67cc49b5b1db9187fd44f,
+    type: 3}
+  m_PrefabInstance: {fileID: 439022173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &965032581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965032579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3f25fd3791efe48b882b2c85038578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFull: 00000000000000000000
+  slots:
+  - {fileID: 1356592967}
+  - {fileID: 1849393926}
+  - {fileID: 1231875081}
+  - {fileID: 832857212}
+  - {fileID: 1542556940}
+  - {fileID: 718743069}
+  - {fileID: 556951621}
+  - {fileID: 228508694}
+  - {fileID: 1819658276}
+  - {fileID: 523099455}
+  inventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inventoryIterator: 0
+  slotContent:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  coins: 0
+  gems: 10
 --- !u!1 &973440219
 GameObject:
   m_ObjectHideFlags: 0
