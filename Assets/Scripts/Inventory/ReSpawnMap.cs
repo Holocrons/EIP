@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ReSpawnMap : MonoBehaviour
 {
-    public GameObject item;
+    //public GameObject item;
     private Transform player;
 
     private void Start()
@@ -12,12 +12,21 @@ public class ReSpawnMap : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    public void SpawnDroppedItem()
+    public void SpawnDroppedItem(GameObject inventory)
     {
         Debug.Log("DROP");
         Vector2 playerPos = new Vector2(player.position.x + 2, player.position.y);
 
-        //Instantiate(item, playerPos, Quaternion.identity);
-        item.gameObject.SetActive(true);
+
+        Debug.Log(playerPos);
+        //DestroyImmediate(itemButton, true);
+        
+        //Instantiate(this.gameObject, playerPos, Quaternion.identity);
+        //inventory.SetActive(true);
+        //item.gameObject.SetActive(true);
+        //itemButton.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
+        this.transform.position = playerPos;
+        Instantiate(inventory.gameObject, playerPos, Quaternion.identity);
     }
 }
