@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BossMovement : MonoBehaviour
 {
@@ -29,8 +30,8 @@ public class BossMovement : MonoBehaviour
     private float maxHight;
     private float minHight;
     private int nbLimbs = 4;
-    private ArmManager firstLimb;
-    private ArmManager secondLimb;
+    private IkManager firstLimb;
+    private IkManager secondLimb;
     private RaycastHit2D groundHit;
     private BossIa ai;
     private bool start = true;
@@ -44,6 +45,7 @@ public class BossMovement : MonoBehaviour
     private float angularSpeed = 5;
     private float attackRadus = 10;
     private float angle = 0;
+    private float t = 0;
 
     /*
     **  Variable used for the smashing attack
@@ -72,13 +74,13 @@ public class BossMovement : MonoBehaviour
     void Start()
     {
         ai = GetComponent<BossIa>();
-        firstLimb = Arms[0].GetComponent<ArmManager>();
-        secondLimb = Arms[1].GetComponent<ArmManager>();
+        firstLimb = Arms[0].GetComponent<IkManager>();
+        secondLimb = Arms[1].GetComponent<IkManager>();
         maxHight = 8.1f;
         minHight = 7.9f;
         hitpos = new Vector3(-1000, -1000);
         playerBis.transform.position = transform.position;
-        nbLimbs = firstLimb.armPrefabs.Count + secondLimb.armPrefabs.Count;
+        nbLimbs = firstLimb.limbList.Count + secondLimb.limbList.Count;
     }
 
     /*
@@ -87,17 +89,22 @@ public class BossMovement : MonoBehaviour
 
     void Update()
     {
+        t += Time.deltaTime;
+        t = t % 5;
         if (start == true)
         {
             StartBoss();
             return;
         }
-        nbLimbs = firstLimb.armPrefabs.Count + secondLimb.armPrefabs.Count;
+        nbLimbs = firstLimb.limbList.Count + secondLimb.limbList.Count;
         Raycast();
         Movement();
         AttackManager();
         if (hitpos != new Vector3(-1000, -1000))
-            follow[nb].transform.position = Vector2.MoveTowards(follow[nb].transform.position, hitpos, speed * Time.deltaTime * 8f);
+        {
+            follow[nb].transform.position = Vector2.MoveTowards(follow[nb].transform.position, hitpos, speed * Time.deltaTime * 4f);
+
+        }
         if (nbLimbs == 0)
         {
             ai.enabled = false;

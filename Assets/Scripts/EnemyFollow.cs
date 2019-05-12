@@ -8,6 +8,7 @@ public class EnemyFollow : MonoBehaviour
     private int x = 0;
     public float range = 5f;
     private bool isFacingRight = false;
+    public Transform RaycastOrigin;
     public float attackRange = 1f;
     private bool attacking = false;
     public float attackCd = 0.5f;
@@ -17,6 +18,12 @@ public class EnemyFollow : MonoBehaviour
     private Rigidbody2D rb;
     private bool bump = false;
     private float bumpTimer = 0;
+
+    public float jumpSpeed = 8f;
+    public float floatHeight;
+    public float liftForce;
+    public float damping;
+
 
     public Transform target;
     public int hp = 3;
@@ -31,6 +38,9 @@ public class EnemyFollow : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawLine(RaycastOrigin.position, new Vector2(RaycastOrigin.position.x, RaycastOrigin.position.y - 2), Color.red, 0.5f);
+        
+
         if (attackTimer < Time.time)
         {
             attacking = false;
@@ -44,13 +54,15 @@ public class EnemyFollow : MonoBehaviour
         {
             x = -1;
         }
+        Debug.DrawRay(RaycastOrigin.position, new Vector2(x, 0), Color.green, 0.5f);
         flipSprite(x);
-        enemyAggro(x);   
+        enemyAggro(x);
+        JumpEnemy();
     }
 
     void flipSprite(int x)
     {
-        if ((x > 0 && !isFacingRight) || (x < 0 && isFacingRight))
+        if (((x > 0 && !isFacingRight) || (x < 0 && isFacingRight)) && Vector2.Distance(transform.position, target.position) >= 5)
         {
             isFacingRight = !isFacingRight;
             Vector2 newScale = transform.localScale;
@@ -96,8 +108,21 @@ public class EnemyFollow : MonoBehaviour
             rb.AddForce(new Vector2(transform.localScale.x, 3) * Time.deltaTime * 50, ForceMode2D.Impulse);
         }
     }
-}    
 
+    void JumpEnemy()
+    {
+        RaycastHit2D hitGround;
+        RaycastHit2D hitWall;
+
+        hitGround = Physics2D.Raycast(RaycastOrigin.position, new Vector2(0, -1), 2);
+        hitWall = Physics2D.Raycast(RaycastOrigin.position, new Vector2(x, 0), 2);
+       if ((hitGround.collider == null || (hitWall.collider != null && hitWall.collider.tag != "Player")) && x < 2)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        }
+    }
+    
+}    
 
 
 

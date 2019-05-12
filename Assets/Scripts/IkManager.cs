@@ -9,17 +9,18 @@ public class IkManager : MonoBehaviour
     public GameObject effector;
     private int f;
 
-    // Start is called before the first frame update
     void Start()    
     {
         f = limbList.Count - 1;
+        limbList[f].GetComponent<LimbManager>().canBeHit = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(target.transform.position, effector.transform.position) > 0.25f)
+        if (effector != null && Vector2.Distance(target.transform.position, effector.transform.position) > 0.25f)
         {
+            if (f > limbList.Count - 1)
+                f = limbList.Count - 1;
             limbList[f].GetComponent<LookAtTarget>().Turn();
                 f--;
             if (f < 0)
@@ -41,6 +42,22 @@ public class IkManager : MonoBehaviour
             }
             limbList[i].GetComponent<LookAtTarget>().Turn();
             i--;
+        }
+    }
+
+    public void NewEffector()
+    {
+        limbList.RemoveAt(limbList.Count - 1);
+        if (limbList.Count == 0)
+        {
+            effector = null;
+            return;
+        }
+        limbList[limbList.Count - 1].GetComponent<LimbManager>().canBeHit = true;
+        effector = limbList[limbList.Count - 1].GetComponent<LookAtTarget>()._joint;
+        foreach (GameObject limb in limbList)
+        {
+            limb.GetComponent<LookAtTarget>()._effector = effector;
         }
     }
 }

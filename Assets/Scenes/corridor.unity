@@ -1131,7 +1131,16 @@ PrefabInstance:
       propertyPath: lookingRight
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1171925265, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233542270, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1233542270, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
 --- !u!4 &64825492 stripped
 Transform:
@@ -8993,6 +9002,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ennemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2831254292009383695, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2831254292009383694, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16406,9 +16420,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   range: 5
+  RaycastOrigin: {fileID: 0}
   attackRange: 1
   attackCd: 0.5
   attackBox: {fileID: 0}
+  jumpSpeed: 8
+  floatHeight: 0
+  liftForce: 0
+  damping: 0
   target: {fileID: 0}
   hp: 3
   bumpDuration: 0.5
@@ -25804,6 +25823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Ennemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831254292009383695, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2831254292009383694, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
         type: 3}
@@ -36200,6 +36224,36 @@ Transform:
   m_Father: {fileID: 386207082}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1730979602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1730979603}
+  m_Layer: 0
+  m_Name: Raycast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1730979603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730979602}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1825190628}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1732162278
 GameObject:
   m_ObjectHideFlags: 0
@@ -37756,6 +37810,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ennemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2831254292009383695, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2831254292009383694, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38372,7 +38431,7 @@ PrefabInstance:
     - target: {fileID: 2831254292009383695, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2831254292009383694, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
         type: 3}
@@ -38434,6 +38493,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 64825492}
+    - target: {fileID: 2831254292009383689, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
+        type: 3}
+      propertyPath: RaycastOrigin
+      value: 
+      objectReference: {fileID: 1730979603}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4beaaf5785b714b479f5e1e7c0c2dadc, type: 3}
 --- !u!4 &1825190628 stripped
