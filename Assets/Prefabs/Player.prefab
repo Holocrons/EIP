@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1171925266
 Transform:
   m_ObjectHideFlags: 0
@@ -205,7 +205,8 @@ GameObject:
   - component: {fileID: 61457410405301228}
   - component: {fileID: 114715262276205714}
   - component: {fileID: 2052136186}
-  - component: {fileID: 1233542270}
+  - component: {fileID: 64825494}
+  - component: {fileID: 3978802522760303846}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -363,7 +364,57 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1233542270
+--- !u!114 &64825494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453466782714660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3f25fd3791efe48b882b2c85038578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFull: 00000000000000000000
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  slotContent:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inventoryIterator: 0
+  coins: 0
+  gems: 10
+  toToggle: {fileID: 0}
+--- !u!114 &3978802522760303846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,6 +427,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  attackCd: 0.2
-  attackCd2: 0.4
+  attackCd: 0.5
+  attackCd2: 0.5
   attackBox: {fileID: 1171925265}
+  dmgImage: {fileID: 3272307691916575924, guid: da8e2f2f543a6dd4dbdabbef9e692875,
+    type: 3}
+  healthBar: {fileID: 0}

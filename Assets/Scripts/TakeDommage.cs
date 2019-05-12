@@ -72,7 +72,8 @@ public class TakeDommage : MonoBehaviour
             hp -= 1;
             GameObject tmp = Instantiate(dmgImage);
             tmp.transform.parent = healthBar.transform;
-            tmp.GetComponent<RectTransform>().localPosition = new Vector3(30 + hp * 50, -20, 0);          
+            tmp.GetComponent<RectTransform>().localPosition = new Vector3(15 + hp * 25, -10, 0);
+            tmp.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             float bump = 7f;
             if (transform.position.x < collision.transform.position.x)
                 bump = -7f;
