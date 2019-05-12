@@ -1131,7 +1131,16 @@ PrefabInstance:
       propertyPath: lookingRight
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1171925265, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233542270, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1233542270, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa9adbca13c67cc49b5b1db9187fd44f, type: 3}
 --- !u!4 &64825492 stripped
 Transform:
@@ -16415,6 +16424,7 @@ MonoBehaviour:
   attackRange: 1
   attackCd: 0.5
   attackBox: {fileID: 0}
+  jumpSpeed: 8
   floatHeight: 0
   liftForce: 0
   damping: 0
@@ -38421,7 +38431,7 @@ PrefabInstance:
     - target: {fileID: 2831254292009383695, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2831254292009383694, guid: 4beaaf5785b714b479f5e1e7c0c2dadc,
         type: 3}

@@ -116,9 +116,8 @@ public class EnemyFollow : MonoBehaviour
 
         hitGround = Physics2D.Raycast(RaycastOrigin.position, new Vector2(0, -1), 2);
         hitWall = Physics2D.Raycast(RaycastOrigin.position, new Vector2(x, 0), 2);
-       if ((hitWall.collider.tag != "Player" || hiGround.collider.tag != "Player") && (hitGround.collider == null || hitWall.collider != null) && x < 2)
+       if ((hitGround.collider == null || (hitWall.collider != null && hitWall.collider.tag != "Player")) && x < 2)
         {
-            Debug.Log(hitGround.collider.name);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
     }
