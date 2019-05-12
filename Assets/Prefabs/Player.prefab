@@ -58,7 +58,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 61457410405301228}
   - component: {fileID: 114715262276205714}
   - component: {fileID: 2052136186}
-  - component: {fileID: 2052136187}
   - component: {fileID: 1233542270}
   m_Layer: 10
   m_Name: Player
@@ -338,9 +337,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cbb7ed369e799479e33ce4bef4d1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
   groundChecker: {fileID: 1897955118}
   jumpVelocity: 2000
+  maxJumps: 2
+  speed: 15
+  lookingRight: 1
+  dashDistance: 350
+  dashCooldown: 3000
 --- !u!95 &2052136186
 Animator:
   serializedVersion: 3
@@ -360,29 +363,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2052136187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453466782714660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3f25fd3791efe48b882b2c85038578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFull: 00000000
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  inventory:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1233542270
 MonoBehaviour:
   m_ObjectHideFlags: 0

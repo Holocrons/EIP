@@ -11,12 +11,15 @@ public class LimbManager : MonoBehaviour
     */ 
 
     public int hp = 20;
+    public bool canBeHit = false;
+    public GameObject par;
 
     private bool vul = true;
     private float recoveryTimer = 0;
     private SpriteRenderer sp;
     private float blinkTimer = 0;
     private bool isOk = false;
+    
 
     private void Start()
     {
@@ -31,7 +34,10 @@ public class LimbManager : MonoBehaviour
     void Update()
     {
         if (hp <= 0)
+        {
+            par.GetComponent<IkManager>().NewEffector();
             Destroy(this.gameObject);
+        }
         if (vul == false && recoveryTimer <= Time.time)
             vul = true;
         if (vul == false)
@@ -44,7 +50,7 @@ public class LimbManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "dommage" && vul == true)
+        if (canBeHit == true && collision.tag == "dommage" && vul == true)
         {
             recoveryTimer = Time.time + 0.5f;
             blinkTimer = Time.time + 0.1f;

@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Start Menu with options/Assets/Menu.unity.meta
 <<<<<<< HEAD
 guid: 2fcb6f3f3f1e077458738bdefb8fa6b1
 =======
 guid: 94c90c7ab63392a42afb506275deb794
 >>>>>>> master
+=======
+guid: d6fa8144a365fc7499218ace67ac6fcf
+>>>>>>> master:Assets/Scenes/Test_2.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
