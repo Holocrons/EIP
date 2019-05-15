@@ -23,6 +23,7 @@ public class EnemyFollow : MonoBehaviour
     public float floatHeight;
     public float liftForce;
     public float damping;
+    public bool jumpo = false;
 
 
     public Transform target;
@@ -116,9 +117,17 @@ public class EnemyFollow : MonoBehaviour
 
         hitGround = Physics2D.Raycast(RaycastOrigin.position, new Vector2(0, -1), 2);
         hitWall = Physics2D.Raycast(RaycastOrigin.position, new Vector2(x, 0), 2);
-       if ((hitGround.collider == null || (hitWall.collider != null && hitWall.collider.tag != "Player")) && x < 2)
+       if (jumpo == true && ((hitGround.collider == null || (hitWall.collider != null && hitWall.collider.tag != "Player")) && x < 2))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            jumpo = false;
+        }
+        if (hitGround.collider != null)
+        {
+            jumpo = true;
+        } else
+        {
+            jumpo = false;
         }
     }
     
