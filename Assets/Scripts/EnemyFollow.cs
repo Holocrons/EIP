@@ -55,7 +55,7 @@ public class EnemyFollow : MonoBehaviour
         {
             x = -1;
         }
-        Debug.DrawRay(RaycastOrigin.position, new Vector2(x, 0), Color.green, 0.5f);
+        Debug.DrawRay(RaycastOrigin.position, new Vector2(x  * 2, 0), Color.green, 0.5f);
         flipSprite(x);
         enemyAggro(x);
         JumpEnemy();
@@ -76,7 +76,7 @@ public class EnemyFollow : MonoBehaviour
     {
         float dist = Vector2.Distance(transform.position, target.position);
 
-        if (dist <= range && dist > attackRange && attacking == false && bump == false)
+        if (dist <= range && dist > attackRange && attacking == false && bump == false && jumpo == true)
         {
             transform.Translate(new Vector2(x, 0) * speed * Time.deltaTime);
             anim.SetBool("running", true);
@@ -85,6 +85,7 @@ public class EnemyFollow : MonoBehaviour
         {
             attacking = true;
             attackTimer = Time.time + attackCd;
+            attackBox.transform.position = new Vector2(0.5f, 0);
             attackBox.SetActive(true);
             anim.SetBool("running", false);
         }
@@ -116,13 +117,13 @@ public class EnemyFollow : MonoBehaviour
         RaycastHit2D hitWall;
 
         hitGround = Physics2D.Raycast(RaycastOrigin.position, new Vector2(0, -1), 2);
-        hitWall = Physics2D.Raycast(RaycastOrigin.position, new Vector2(x, 0), 2);
+        hitWall = Physics2D.Raycast(RaycastOrigin.position, new Vector2(x * 2.5f, 0), 2);
        if (jumpo == true && ((hitGround.collider == null || (hitWall.collider != null && hitWall.collider.tag != "Player")) && x < 2))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            rb.AddForce(new Vector2(-0.1f * (transform.localScale.x / 3) , 0.4f), ForceMode2D.Impulse);
             jumpo = false;
         }
-        if (hitGround.collider != null)
+        if (hitGround.collider != null && bump == false)
         {
             jumpo = true;
         } else
